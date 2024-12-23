@@ -1,19 +1,15 @@
-# Importa o módulo sys:
-import sys
 # Importa o módulo math:
 import math
-# Importa o módulo medidas_de_posicao como mp:
-import medidas_de_posicao as mpos
+# Importa o módulo medidas_de_posicao como mpos
+import INMET.medidas_de_posicao as mpos # type: ignore
 
 # n: número de observações;
 # X: vetor de observações.
 def desvio_medio(n, X):
     # Se número de observações menor ou igual a zero:
     if n <= 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro. O número de observações deve ser um natural não nulo.")
 
     # Calcula a média aritmética das observações:
     X_ma = mpos.media_aritmetica(n, X)
@@ -34,11 +30,9 @@ def desvio_medio(n, X):
 def desvio_medio_de_observacoes_distintas_com_frequencias_relativas_associadas(k, F, X):
     # Se número de observações distintas menor ou igual a zero:
     if k <= 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações distintas deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
-    
+        raise Exception("Erro. O número de observações distintas deve ser um natural não nulo.")
+
     # Calcula a média aritmética das observações:
     X_ma = mpos.media_aritmetica_de_observacoes_distintas_com_frequencias_relativas_associadas(k, F, X)
     # Inicia desvio médio:
@@ -50,10 +44,8 @@ def desvio_medio_de_observacoes_distintas_com_frequencias_relativas_associadas(k
     for i in range(0, k):
         # Se a frequência relativa de X[i] for menor que zero:
         if F[i] < 0:
-            # Imprime mensagem de erro:
-            print("Erro. A frequência relativa de um valor qualquer deve ser um racional não negativo.\n")
             # Encerra o programa:
-            sys.exit()
+            raise Exception("Erro. A frequência relativa de um valor qualquer deve ser um racional não negativo.")
         # Senão:
         else:
             # Acumula:
@@ -63,10 +55,8 @@ def desvio_medio_de_observacoes_distintas_com_frequencias_relativas_associadas(k
     
     # Se a frequência de observações total for diferente de 1:
     if f != 1:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro. O número de observações deve ser um natural não nulo.")
     # Senão:
     else:
         # Retorna o desvio médio das observações de X:
@@ -80,10 +70,8 @@ def desvio_medio_de_observacoes_distintas_com_frequencias_relativas_associadas(k
 def variancia(n, X):
     # Se número de observações menor ou igual a zero:
     if n <= 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro. O número de observações deve ser um natural não nulo.")
 
     # Calcula a média aritmética das observações:
     X_ma = mpos.media_aritmetica(n, X)
@@ -103,11 +91,9 @@ def variancia(n, X):
 def variancia_v2(n, X):
     # Se número de observações menor ou igual a zero:
     if n <= 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
-    
+        raise Exception("Erro. O número de observações deve ser um natural não nulo.")
+
     # Inicia média aritmética das observações:
     X_ma = 0
     # Inicia variância:
@@ -136,11 +122,9 @@ def variancia_v2(n, X):
 def variancia_de_observacoes_distintas_com_frequencias_relativas_associadas(k, F, X):
     # Se número de observações distintas menor ou igual a zero:
     if k <= 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações distintas deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
-    
+        raise Exception("Erro. O número de observações distintas deve ser um natural não nulo.")
+
     # Calcula a média aritmética das observações:
     X_ma = mpos.media_aritmetica_de_observacoes_distintas_com_frequencias_relativas_associadas(k, F, X)
     # Inicia variância:
@@ -152,10 +136,8 @@ def variancia_de_observacoes_distintas_com_frequencias_relativas_associadas(k, F
     for i in range(0, k):
         # Se a frequência relativa de X[i] for menor que zero:
         if F[i] < 0:
-            # Imprime mensagem de erro:
-            print("Erro. A frequência relativa de um valor qualquer deve ser um racional não negativo.\n")
             # Encerra o programa:
-            sys.exit()
+            raise Exception("Erro. A frequência relativa de um valor qualquer deve ser um racional não negativo.")
         # Senão:
         else:
             # Acumula a variância:
@@ -165,10 +147,8 @@ def variancia_de_observacoes_distintas_com_frequencias_relativas_associadas(k, F
     
     # Se a frequência de observações total for diferente de 1:
     if f != 1:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro. O número de observações deve ser um natural não nulo.")
     # Senão:
     else:
         # Retorna a variância das observações de X:
@@ -183,11 +163,9 @@ def variancia_de_observacoes_distintas_com_frequencias_relativas_associadas(k, F
 def variancia_de_observacoes_distintas_com_frequencias_relativas_associadas_v2(k, F, X):
     # Se número de observações distintas menor ou igual a zero:
     if k <= 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações distintas deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
-    
+        raise Exception("Erro. O número de observações distintas deve ser um natural não nulo.")
+
     # Inicia média aritmética das observações:
     X_ma = 0
     # Inicia variância:
@@ -199,10 +177,8 @@ def variancia_de_observacoes_distintas_com_frequencias_relativas_associadas_v2(k
     for i in range(0, k):
         # Se a frequência relativa de X[i] for menor que zero:
         if F[i] < 0:
-            # Imprime mensagem de erro:
-            print("Erro. A frequência relativa de um valor qualquer deve ser um racional não negativo.\n")
             # Encerra o programa:
-            sys.exit()
+            raise Exception("Erro. A frequência relativa de um valor qualquer deve ser um racional não negativo.")
         # Senão:
         else:
             # Acumula a média aritmética:
@@ -214,10 +190,8 @@ def variancia_de_observacoes_distintas_com_frequencias_relativas_associadas_v2(k
             
     # Se a frequência de observações total for diferente de 1:
     if f != 1:
-        # Imprime mensagem de erro:
-        print("Erro: a frequência não corresponde com o número de observações.\n")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro: a frequência não corresponde com o número de observações.")
     # Senão:
     else:
         # Retorna a variância das observações de X:

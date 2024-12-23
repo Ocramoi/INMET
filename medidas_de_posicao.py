@@ -1,15 +1,10 @@
-# Importa o módulo sys:
-import sys
-
 # n: número de observações;
 # X: vetor de observações.
 def media_aritmetica(n, X):
     # Se número de observações menor ou igual a zero:
     if n <= 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro. O número de observações deve ser um natural não nulo.")
 
     # Inicia média aritmética:
     ma = 0
@@ -27,10 +22,8 @@ def media_aritmetica(n, X):
 def media_aritmetica_de_observacoes_distintas_com_pesos_de_repeticao_associados(k, N, X):
     # Se número de observações distintas menor ou igual a zero:
     if k <= 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações distintas deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro. O número de observações distintas deve ser um natural não nulo.")
 
     # Inicia média aritmética:
     ma = 0
@@ -41,10 +34,8 @@ def media_aritmetica_de_observacoes_distintas_com_pesos_de_repeticao_associados(
     for i in range(0, k):
         # Se o número de observações de X[i] for menor que zero:
         if N[i] < 0:
-            # Imprime mensagem de erro:
-            print("Erro. O número de observações de um valor qualquer deve ser natural.\n")
             # Encerra o programa:
-            sys.exit()
+            raise Exception("Erro. O número de observações de um valor qualquer deve ser natural.")
         # Senão:
         else:
             # Acumula:
@@ -54,10 +45,8 @@ def media_aritmetica_de_observacoes_distintas_com_pesos_de_repeticao_associados(
     
     # Se o número de observações total for igual a zero:
     if n == 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro. O número de observações deve ser um natural não nulo.")
     # Senão:
     else:
         # Retorna a media aritmetica das observações de X:
@@ -72,11 +61,9 @@ def media_aritmetica_de_observacoes_distintas_com_pesos_de_repeticao_associados(
 def media_aritmetica_de_observacoes_distintas_com_frequencias_relativas_associadas(k, F, X):
     # Se número de observações distintas menor ou igual a zero:
     if k <= 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações distintas deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
-    
+        raise Exception("Erro. O número de observações distintas deve ser um natural não nulo.")
+
     # Inicia média aritmética:
     ma = 0
     # Inicia contador de frequência total:
@@ -86,10 +73,8 @@ def media_aritmetica_de_observacoes_distintas_com_frequencias_relativas_associad
     for i in range(0, k):
         # Se a frequência relativa de X[i] for menor que zero:
         if F[i] < 0:
-            # Imprime mensagem de erro:
-            print("Erro. A frequência relativa de um valor qualquer deve ser um racional não negativo.\n")
             # Encerra o programa:
-            sys.exit()
+            raise Exception("Erro. A frequência relativa de um valor qualquer deve ser um racional não negativo.")
         # Senão:
         else:
             # Acumula:
@@ -99,10 +84,8 @@ def media_aritmetica_de_observacoes_distintas_com_frequencias_relativas_associad
     
     # Se a frequência de observações total for diferente de 1:
     if f != 1:
-        # Imprime mensagem de erro:
-        print("Erro: a frequência não corresponde com o número de observações.\n")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro: a frequência não corresponde com o número de observações.")
     # Senão:
     else:
         # Retorna a media aritmetica das observações de X:
@@ -116,38 +99,31 @@ def media_aritmetica_de_observacoes_distintas_com_frequencias_relativas_associad
 def mediana(n, X):
     # Se número de observações for menor ou igual a zero:
     if n <= 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro. O número de observações deve ser um natural não nulo.")
 
     # Se n ímpar:
     if n%2:
         # Retorna a observação no centro da sequência:
         return X[int(n/2)]
-    # Senão, se n par:
     else:
         # Retorna a média aritmética entre as duas observações centrais:
         return ((X[int(n/2)-1] + X[int(n/2)])/2)
-
-import sys
 
 # n: número de observações;
 # X: vetor de observações.
 def moda(n, X):
     # Se número de observações for menor ou igual a zero:
     if n <= 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações deve ser um natural não nulo.\n")
         # Encerra o programa:
-        sys.exit()
-    
+        raise Exception("Erro. O número de observações deve ser um natural não nulo.")
+
     # Inicia lista de pares de observações distintas e contagem de repetições:
     Y = [[X[0], 1]]
     # Número de obsevações distintas: 
     k = 1
     # Inicia lista de índices relativos as observações mais frequentes na lista de pares Y:
-    I = [0]
+    Iv = [0]
     # Número de índices de observações mais frequentes:
     p = 1
     
@@ -162,17 +138,17 @@ def moda(n, X):
                 # Incrementa o número de repetíções:
                 Y[j][1] += 1
                 # Se a observação corrente repetiu mais vezes que uma das observações mais frequentes:
-                if Y[j][1] > Y[I[0]][1]:
+                if Y[j][1] > Y[Iv[0]][1]:
                     # Limpa a lista de índices de observações mais repetidas:
-                    I.clear()
+                    Iv.clear()
                     # Insere o índice da observação corrente:
-                    I.append(j)
+                    Iv.append(j)
                     # Reinicia o número de índices:
                     p = 1
                 # Senão, se a observação corrente repetiu o mesmo número de vezes:
-                elif Y[j][1] == Y[I[0]][1]:
+                elif Y[j][1] == Y[Iv[0]][1]:
                     # Insere o índice da observação corrente:
-                    I.append(j)
+                    Iv.append(j)
                     # Incrementa o número de índices:
                     p += 1
                 # Sai do loop mais interno:
@@ -186,11 +162,11 @@ def moda(n, X):
             # Incrementa o número de observações distintas:
             k += 1
             # Se a primeira observação mais frequente tiver frequência 1:
-            if Y[I[0]][1] == 1:
+            if Y[Iv[0]][1] == 1:
                 # Insere o índice da observação distinta inserida:
-                I.append(j)
+                Iv.append(j)
                 # Incrementa o número de índices:
                 p += 1
     
     # Retorna uma lista das observações mais frequentes:
-    return [Y[I[i]][0] for i in range(0, p)]
+    return [Y[Iv[i]][0] for i in range(0, p)]

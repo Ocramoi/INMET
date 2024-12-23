@@ -1,15 +1,5 @@
-# Importa o módulo sys: 
-import sys
 # Importa o módulo metodos_descritivos como mdes:
-import metodos_descritivos as mdes
-# Importa stats de scipy:
-from scipy import stats
-# Importa curve_fit de scipy.optimize:
-from scipy.optimize import curve_fit
-# Importa Polynomial de numpy.polynomial:
-from numpy.polynomial import Polynomial
-# Importa math:
-import math
+import INMET.metodos_descritivos as mdes # type: ignore
 
 # Y_t = \sum_{j=-q}^{s}{\alpha_j*X_{t+j}}
 # \sum_{j=-q}^{s}{\alpha_j} = 1
@@ -20,34 +10,25 @@ import math
 # s: distância temporal à direita da (t+1)-ésima observação;
 # Alfa: vetor de pesos.
 def plota_grafico_de_suavizacao_por_media_movel(n, X, q, s, Alfa):
-    
     # Se alguma das distâncias temporais forem menores que zero:
     if q < 0 or s < 0:
-        # Imprime mensagem de erro:
-        print("Erro. As distâncias temporais devem ser naturais não nulos.\n")
         # Encerra programa:
-        sys.exit()
+        raise Exception("Erro. As distâncias temporais devem ser naturais não nulos.")
 
     # Se o tamanho do vetor alfa for diferente do tamanho da janela:
     if len(Alfa) != q+s:
-        # Imprime mensagem de erro:
-        print(f"Erro: {len(Alfa)} != {q} + {s}.\n")
         # Encerra programa:
-        sys.exit()
+        raise Exception(f"Erro: {len(Alfa)} != {q} + {s}.")
 
     # Se não há observações:
     if n < 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações deve ser um natural não nulo.")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro. O número de observações deve ser um natural não nulo.")
 
     # Se o número de observações for menor que o tamanho da janela:
     if n < q+s:
-        # Imprime mensagem de erro:
-        print(f"Erro. O tamanho da janela deve ser menor que o número de observações.\n")
         # Encerra programa:
-        sys.exit()
+        raise Exception("Erro. O tamanho da janela deve ser menor que o número de observações.")
 
     # Inicia acumulador:
     acumulador = 0
@@ -57,10 +38,8 @@ def plota_grafico_de_suavizacao_por_media_movel(n, X, q, s, Alfa):
         acumulador += alfa
     # Se o acumulo de alfa for diferente de 1:
     if acumulador != 1:
-        # Imprime mensagem de erro:
-        print("Erro. A soma dos elementos do vetor alfa deve resultar em 1.\n")
         # Encerra programa:
-        sys.exit()
+        raise Exception("Erro. A soma dos elementos do vetor alfa deve resultar em 1.")
 
     # Cria série Y:
     Y = []
@@ -92,24 +71,18 @@ def plota_grafico_de_suavizacao_por_media_movel(n, X, q, s, Alfa):
 def suavizacao_por_media_movel_simplificada(n, X, q):
     # Se a distância temporal for menor que zero:
     if q < 0:
-        # Imprime mensagem de erro:
-        print("Erro. A distância temporal deve ser um natural não nulo.\n")
         # Encerra programa:
-        sys.exit()
-    
+        raise Exception("Erro. A distância temporal deve ser um natural não nulo.")
+
     # Se não há observações:
     if n < 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número de observações deve ser um natural não nulo.")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro. O número de observações deve ser um natural não nulo.")
 
     # Se o número de observações for menor que o tamanho da janela:
     if n < q+q:
-        # Imprime mensagem de erro:
-        print(f"Erro. O tamanho da janela deve ser menor que o número de observações.\n")
         # Encerra programa:
-        sys.exit()
+        raise Exception("Erro. O tamanho da janela deve ser menor que o número de observações.")
 
     # Cria série Y:
     Y = []

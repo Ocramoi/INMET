@@ -1,8 +1,5 @@
 # Importa math:
 import math
-# Importa sys: 
-import sys
-
 # Função que retorna uma lista dos números primos
 # naturais até o módulo de um dado número inteiro.
 def crivo_de_eratostenes(nro):
@@ -53,10 +50,8 @@ def divisores(numero):
     qtd = 0
     # Se o número for menor que zero:
     if numero < 0:
-        # Imprime mensagem de erro:
-        print("Erro. O número a ser descrito por seus divisores deve ser um número natural.")
         # Encerra o programa:
-        sys.exit()
+        raise Exception("Erro. O número a ser descrito por seus divisores deve ser um número natural.")
     # Se o número é o zero:
     if not numero:
         # Retorna dupla de zero e lista vazia:

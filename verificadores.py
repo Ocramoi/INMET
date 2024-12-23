@@ -1,5 +1,5 @@
 # Importa geradores_de_sequencias como gseq: 
-import geradores_de_sequencias as gseq
+import INMET.geradores_de_sequencias as gseq # type: ignore
 # Importa math:
 import math
 
